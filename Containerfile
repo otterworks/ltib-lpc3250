@@ -16,6 +16,4 @@ RUN curl -SLO https://cdn.kernel.org/pub/linux/kernel/v2.6/linux-2.6.27.8.tar.bz
 
 USER ltib
 WORKDIR $HOME/ltib
-RUN mkdir rootfs
-RUN ./ltib --preconfig config/lpc3250-base.config --batch --continue --pkg skell
 RUN ./ltib --preconfig config/lpc3250-base.config --batch --continue
