@@ -1,0 +1,12 @@
+diff -Naur rpm-4.0.4/autodeps/linux.prov rpm-4.0.4.modified/autodeps/linux.prov
+--- rpm-4.0.4/autodeps/linux.prov	2002-03-18 17:29:01.000000000 -0800
++++ rpm-4.0.4.modified/autodeps/linux.prov	2020-05-21 13:21:39.050192824 -0700
+@@ -6,7 +6,7 @@
+ filelist=`sed "s/['\"]/\\\&/g"`
+ 
+ solist=$(echo $filelist | grep "\\.so" | grep -v "^/lib/ld.so" | \
+-	xargs file -L 2>/dev/null | grep "ELF.*shared object" | cut -d: -f1)
++	xargs file -L 2>/dev/null | grep "ELF.*shared object\|ELF.*pie executable" | cut -d: -f1)
+ pythonlist=
+ tcllist=
+ 

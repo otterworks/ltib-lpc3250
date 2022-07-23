@@ -1,0 +1,14 @@
+diff -Naur mtd/util/mkfs.jffs2.c mtd.modified/util/mkfs.jffs2.c
+--- mtd/util/mkfs.jffs2.c	2020-05-21 11:03:27.272940283 -0700
++++ mtd.modified/util/mkfs.jffs2.c	2020-05-21 11:07:39.357652385 -0700
+@@ -69,6 +69,10 @@
+ #undef crc32
+ #include "crc32.h"
+ 
++#if !defined( major )
++#include <sys/sysmacros.h>
++#endif
++
+ /* Do not use the wierd XPG version of basename */
+ #undef basename
+ 
