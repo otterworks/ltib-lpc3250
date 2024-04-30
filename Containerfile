@@ -1,5 +1,9 @@
 FROM ghcr.io/otterworks/ltib-centos:latest
 
+LABEL org.opencontainers.image.source https://github.com/otterworks/ltib-lpc3250
+LABEL org.opencontainers.image.description LTIB container for LPC3250
+MAINTAINER M Jordan Stanway "m.j.stanway@alum.mit.edu"
+
 USER root
 COPY ltibrc $HOME/.ltibrc
 COPY lfs-5.1 $HOME/ltib/dist/lfs-5.1
