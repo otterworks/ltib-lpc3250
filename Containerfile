@@ -19,3 +19,4 @@ COPY ./ltibrc ./.ltibrc
 COPY ./lfs-5.1 ./dist/lfs-5.1/
 COPY ./config ./config/
 
+RUN ./ltib --preconfig config/lpc3250-base.config --batch --continue --no-deploy
