@@ -1,12 +1,14 @@
 This is a repository for the development and cross-compilation environment
-for a LPC3250 SoM. It uses Docker and LTIB.
+for a LPC3250 SoM. It uses [`podman`][podman] and [`LTIB`][ltib].
 
-Unfortunately, the `skell` package in LTIB uses `mknod` to make the nodes in
-the target filesystem. This causes permissions issues when building in
-containers. The only way I've found to get around it is to build this
-container as root, and get the `skell` package installed, then build later
-layers as a normal user (or on a CI/CD runner).
+This container builds [`FROM ghcr.io/otterworks/ltib-centos:latest`][from],
+which should circumvent difficulties needing `mknod` to build the `skell`
+package, which requires elevated privileges.
 
-Since `skell` is the package that fails to build, I've written the Dockerfile
-(Containerfile) to try to build just that package first, without any others,
-so that it will fail fast.
+_____________
+
+_____________
+[podman]: https://docs.podman.io
+[ltib]: http://ltib.org
+
+[from]: https://github.com/otterworks/ltib-centos
