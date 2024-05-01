@@ -16,10 +16,14 @@ RUN curl -#SLO https://cdn.kernel.org/pub/linux/kernel/v2.6/linux-2.6.27.8.tar.b
  && md5sum libffi-3.2.1.tar.gz | tee libffi-3.2.1.tar.gz.md5 \
  && md5sum glib-2.43.3.tar.xz | tee glib-2.43.3.tar.xz.md5
 
-USER ltib
-WORKDIR $HOME/ltib
+WORKDIR /home/ltib/ltib
 COPY ./ltibrc ./.ltibrc
 COPY ./lfs-5.1 ./dist/lfs-5.1/
 COPY ./config ./config/
+RUN chown -R ltib:ltib .ltibrc \
+ && chown -R ltib:ltib dist \
+ && chown -R ltib:ltib config
 
-RUN ./ltib --preconfig config/lpc3250-base.config --batch --continue --no-deploy
+USER ltib
+
+RUN ./ltib --preconfig config/lpc3250-base.config --batch --no-deploy
