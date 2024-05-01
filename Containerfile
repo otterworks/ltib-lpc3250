@@ -9,9 +9,12 @@ USER root
 # put the toolchain, kernel, and new external sources directly into the LPP
 WORKDIR /opt/ltib/pkgs
 COPY patches/* ./
-RUN curl -SLO https://cdn.kernel.org/pub/linux/kernel/v2.6/linux-2.6.27.8.tar.bz2 \
- && curl -SLO ftp://sourceware.org/pub/libffi/libffi-3.2.1.tar.gz \
- && curl -SLO http://ftp.gnome.org/pub/gnome/sources/glib/2.43/glib-2.43.3.tar.xz
+RUN curl -#SLO https://cdn.kernel.org/pub/linux/kernel/v2.6/linux-2.6.27.8.tar.bz2 \
+ && curl -#SLO ftp://sourceware.org/pub/libffi/libffi-3.2.1.tar.gz \
+ && curl -#SLO http://ftp.gnome.org/pub/gnome/sources/glib/2.43/glib-2.43.3.tar.xz \
+ && md5sum linux-2.6.27.8.tar.bz2 | tee linux-2.6.27.8.tar.bz2.md5 \
+ && md5sum libffi-3.2.1.tar.gz | tee libffi-3.2.1.tar.gz.md5 \
+ && md5sum glib-2.43.3.tar.xz | tee glib-2.43.3.tar.xz.md5
 
 USER ltib
 WORKDIR $HOME/ltib
